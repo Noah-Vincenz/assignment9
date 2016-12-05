@@ -11,6 +11,13 @@ using std::cout;
 using std::endl;
 
 int main() {
+    /*
+    vector<pair<int, int> > a = legal_moves(4, Path{{0,0},{2,1},{3,3}}, {3,3});
+    for (pair<int, int> b : a) {
+        cout << ", (" << b.first << "," << b.second << ")";
+    }
+     */
+
     for (int dim = 1; dim <= 8; ++dim) {
         cout << "Looking for tour on a " << dim << " x " << dim << " board\n";
         auto tour = first_tour(dim, Path{{0,0}});
@@ -29,4 +36,5 @@ int main() {
             }
         }
     }
+
 }
