@@ -17,7 +17,7 @@ pair<int,int> operator+(const pair<int,int> & a, const pair<int,int> & b) {
 }
 
 // TODO - your code goes here
-vector<pair<int, int> > moves(pair<int, int> pairIn) {
+vector<pair<int, int> > moves(const pair<int, int> pairIn) {
     return vector<pair<int, int> > {make_pair(pairIn.first+1, pairIn.second+2),
                                     make_pair(pairIn.first+2, pairIn.second+1),
                                     make_pair(pairIn.first+2, pairIn.second-1),
@@ -28,7 +28,7 @@ vector<pair<int, int> > moves(pair<int, int> pairIn) {
                                     make_pair(pairIn.first-1, pairIn.second+2)};
 };
 
-vector<pair<int, int> > legal_moves(int dim, Path path, pair<int,int> pos) {
+vector<pair<int, int> > legal_moves(const int dim, const Path path, const pair<int,int> pos) {
     vector<pair<int, int> > movesVector = moves(pos);
     vector<pair<int, int> > vectorToReturn;
     std::copy_if(movesVector.begin(), movesVector.end(), back_inserter(vectorToReturn),
@@ -38,7 +38,7 @@ vector<pair<int, int> > legal_moves(int dim, Path path, pair<int,int> pos) {
     return vectorToReturn;
 };
 
-pair<Path,bool> first_tour (int dim, Path currentPath) {
+pair<Path,bool> first_tour (const int dim, Path currentPath) {
     if (currentPath.size() == dim * dim) {
         return make_pair(currentPath, true);
     }
