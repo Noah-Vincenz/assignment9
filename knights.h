@@ -18,17 +18,14 @@ pair<int,int> operator+(const pair<int,int> & a, const pair<int,int> & b) {
 
 // TODO - your code goes here
 vector<pair<int, int> > moves(pair<int, int> pairIn) {
-    vector<pair<int, int> > vectorToReturn;
-    vectorToReturn.reserve(8);
-    vectorToReturn.push_back(make_pair(pairIn.first+1, pairIn.second-2));
-    vectorToReturn.push_back(make_pair(pairIn.first+2, pairIn.second-1));
-    vectorToReturn.push_back(make_pair(pairIn.first+2, pairIn.second+1));
-    vectorToReturn.push_back(make_pair(pairIn.first+1, pairIn.second+2));
-    vectorToReturn.push_back(make_pair(pairIn.first-1, pairIn.second+2));
-    vectorToReturn.push_back(make_pair(pairIn.first-2, pairIn.second+1));
-    vectorToReturn.push_back(make_pair(pairIn.first-2, pairIn.second-1));
-    vectorToReturn.push_back(make_pair(pairIn.first-1, pairIn.second-2));
-    return vectorToReturn;
+    return vector<pair<int, int> > {make_pair(pairIn.first+1, pairIn.second-2),
+                                    make_pair(pairIn.first+2, pairIn.second-1),
+                                    make_pair(pairIn.first+2, pairIn.second+1),
+                                    make_pair(pairIn.first+1, pairIn.second+2),
+                                    make_pair(pairIn.first-1, pairIn.second+2),
+                                    make_pair(pairIn.first-2, pairIn.second+1),
+                                    make_pair(pairIn.first-2, pairIn.second-1),
+                                    make_pair(pairIn.first-1, pairIn.second-2)};
 };
 
 vector<pair<int, int> > legal_moves(int dim, Path path, pair<int,int> pos) {
@@ -41,21 +38,19 @@ vector<pair<int, int> > legal_moves(int dim, Path path, pair<int,int> pos) {
     return vectorToReturn;
 };
 
-pair<Path,bool> first_tour (int dim, Path currentPath) { //problem is that it doesnt stop searching when it has found one solution and then returns no tour found
+pair<Path,bool> first_tour (int dim, Path currentPath) {
     if (currentPath.size() == dim * dim) {
-        return pair<Path,bool> (currentPath, true);
+        return make_pair(currentPath, true);
     }
     else {
         for (pair <int, int> x : legal_moves(dim, currentPath, currentPath.at(currentPath.size()-1))) {
-            Path tempPath = currentPath;
-            tempPath.reserve(dim*dim);
-            tempPath.push_back(x);
-            auto result = first_tour(dim, tempPath);
+            currentPath.push_back(x);
+            auto result = first_tour(dim, currentPath);
             if (result.second == true) {
                 return result;
             }
         }
-        return pair<Path,bool> (Path(), false);
+        return make_pair(Path(), false);
     }
 };
 // Do not edit below this line
