@@ -18,14 +18,14 @@ pair<int,int> operator+(const pair<int,int> & a, const pair<int,int> & b) {
 
 // TODO - your code goes here
 vector<pair<int, int> > moves(pair<int, int> pairIn) {
-    return vector<pair<int, int> > {make_pair(pairIn.first+1, pairIn.second-2),
-                                    make_pair(pairIn.first+2, pairIn.second-1),
+    return vector<pair<int, int> > {make_pair(pairIn.first+1, pairIn.second+2),
                                     make_pair(pairIn.first+2, pairIn.second+1),
-                                    make_pair(pairIn.first+1, pairIn.second+2),
-                                    make_pair(pairIn.first-1, pairIn.second+2),
-                                    make_pair(pairIn.first-2, pairIn.second+1),
+                                    make_pair(pairIn.first+2, pairIn.second-1),
+                                    make_pair(pairIn.first+1, pairIn.second-2),
+                                    make_pair(pairIn.first-1, pairIn.second-2),
                                     make_pair(pairIn.first-2, pairIn.second-1),
-                                    make_pair(pairIn.first-1, pairIn.second-2)};
+                                    make_pair(pairIn.first-2, pairIn.second+1),
+                                    make_pair(pairIn.first-1, pairIn.second+2)};
 };
 
 vector<pair<int, int> > legal_moves(int dim, Path path, pair<int,int> pos) {
