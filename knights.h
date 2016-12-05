@@ -40,9 +40,6 @@ vector<pair<int, int> > legal_moves(int dim, Path path, pair<int,int> pos) {
                 });
     return vectorToReturn;
 };
-#include <iostream>
-using std::cout;
-using std::endl;
 
 pair<Path,bool> first_tour (int dim, Path currentPath) { //problem is that it doesnt stop searching when it has found one solution and then returns no tour found
     if (currentPath.size() == dim * dim) {
@@ -51,9 +48,12 @@ pair<Path,bool> first_tour (int dim, Path currentPath) { //problem is that it do
     else {
         for (pair <int, int> x : legal_moves(dim, currentPath, currentPath.at(currentPath.size()-1))) {
             Path tempPath = currentPath;
+            tempPath.reserve(dim*dim);
             tempPath.push_back(x);
             auto result = first_tour(dim, tempPath);
-            if (result.second == true) return result;
+            if (result.second == true) {
+                return result;
+            }
         }
         return pair<Path,bool> (Path(), false);
     }
