@@ -44,8 +44,9 @@ pair<Path,bool> first_tour (const int dim, Path currentPath) {
     }
     else {
         for (pair <int, int> x : legal_moves(dim, currentPath, currentPath.at(currentPath.size()-1))) {
-            currentPath.push_back(x);
-            auto result = first_tour(dim, currentPath);
+            Path tempPath = currentPath;
+            tempPath.push_back(x);
+            auto result = first_tour(dim, tempPath);
             if (result.second == true) {
                 return result;
             }
