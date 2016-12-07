@@ -38,7 +38,7 @@ vector<pair<int, int> > legal_moves(const int dim, const Path path, const pair<i
     return vectorToReturn;
 };
 
-pair<Path,bool> first_tour (const int dim, Path currentPath) {
+pair<Path,bool> first_tour (const int dim, const Path currentPath) {
     if (currentPath.size() == dim * dim) {
         return make_pair(currentPath, true);
     }
